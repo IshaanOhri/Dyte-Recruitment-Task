@@ -1,0 +1,22 @@
+{
+  "name": "dyte-recruitment-task",
+  "version": "1.0.0",
+  "description": "This is the Backend Task in TypeScript for Dyte Recruitment July 2021",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IshaanOhri/Dyte-Recruitment-Task.git"
+  },
+  "author": "Ishaan Ohri 18BCE0265",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IshaanOhri/Dyte-Recruitment-Task/issues"
+  },
+  "homepage": "https://github.com/IshaanOhri/Dyte-Recruitment-Task#readme",
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
