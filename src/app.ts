@@ -2,14 +2,14 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 15:56:57
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 16:52:53
+ * @Last Modified time: 2021-07-16 18:02:16
  * @Description: Driver file of the server
  */
 
 import cors from 'cors';
 import express, { Application } from 'express';
 import { router } from './api/routes';
-import { PORT, HOST } from './config';
+import { PORT, HOST, NODE_ENV, morganConfig } from './config';
 import logger from './log/config';
 import * as useragent from 'express-useragent';
 import { notFound, responseHandler } from './middleware';
@@ -27,11 +27,16 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware for exposing user-agent
 app.use(useragent.express());
 
+// Include Morgan for development environment
+if (NODE_ENV === 'development') {
+  app.use(morganConfig);
+}
+
 // Connect to Database
 require('./database/database');
 
 // Import routers
-app.use('/api/v1', router);
+app.use(router);
 
 // Not found handler
 app.use(notFound);
@@ -41,5 +46,5 @@ app.use(responseHandler);
 
 // Start Express App
 app.listen(PORT, HOST, () => {
-	logger.info(`🚀 Server running on http://${HOST}:${PORT} 🚀`);
+  logger.info(`🚀 Server running on http://${HOST}:${PORT} 🚀`);
 });
