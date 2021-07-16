@@ -2,14 +2,17 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 15:56:57
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 16:16:45
+ * @Last Modified time: 2021-07-16 16:52:53
  * @Description: Driver file of the server
  */
 
 import cors from 'cors';
 import express, { Application } from 'express';
+import { router } from './api/routes';
 import { PORT, HOST } from './config';
 import logger from './log/config';
+import * as useragent from 'express-useragent';
+import { notFound, responseHandler } from './middleware';
 
 // Initializing Express App
 const app: Application = express();
@@ -19,6 +22,10 @@ app.use(cors());
 
 // Body parser
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Middleware for exposing user-agent
+app.use(useragent.express());
 
 // Connect to Database
 require('./database/database');

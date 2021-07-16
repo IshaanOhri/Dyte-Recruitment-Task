@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 16:27:58
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 16:30:06
+ * @Last Modified time: 2021-07-16 16:53:22
  * @Description: Defines functions for all miscellaneous routes
  */
 
@@ -27,7 +27,7 @@ const health = catchAsync(async (req: Request, res: Response, next: NextFunction
 		source: req.useragent?.source,
 	};
 
-	next(new HttpResponse(status.ok, browserDetails, message.healthRoute));
+	next(new HttpResponse(status.ok, { browserDetails }, message.healthRoute));
 });
 
 export { home, health };
