@@ -2,8 +2,8 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 15:53:35
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 15:53:35
- * @Description: Configuration for Log4js
+ * @Last Modified time: 2021-07-16 15:54:06
+ * @Description: Configuration for log4js
  */
 
 import { configure, getLogger } from 'log4js';
