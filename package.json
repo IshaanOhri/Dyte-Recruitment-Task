@@ -4,7 +4,10 @@
   "description": "This is the Backend Task in TypeScript for Dyte Recruitment July 2021",
   "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+		"dev": "env-cmd -f ./src/config/dev.env nodemon ./src/app.ts",
+		"pretty-quick": "pretty-quick",
+		"update": "npx npm-check-updates -u",
+		"build": "tsc --project tsconfig.json"
   },
   "repository": {
     "type": "git",
