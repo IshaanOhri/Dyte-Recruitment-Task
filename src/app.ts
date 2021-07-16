@@ -2,14 +2,14 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 15:56:57
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 16:06:50
+ * @Last Modified time: 2021-07-16 16:16:45
  * @Description: Driver file of the server
  */
 
-import cors from "cors";
-import express, { Application } from "express";
-import { PORT, HOST } from "./config/env";
-import logger from "./log/config";
+import cors from 'cors';
+import express, { Application } from 'express';
+import { PORT, HOST } from './config';
+import logger from './log/config';
 
 // Initializing Express App
 const app: Application = express();
