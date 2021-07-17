@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 17:14:58
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 18:19:46
+ * @Last Modified time: 2021-07-17 20:57:09
  * @Description: Defines functions for all webhook routes
  */
 
@@ -23,7 +23,7 @@ const createWebhook = catchAsync(async (req: Request, res: Response, next: NextF
   });
 
   // Fetch request to Moleculer micro-service
-  const response = await fetch('http://localhost:3001/webhooks/register', {
+  const response = await fetch('http://webhook-service:3001/webhooks/register', {
     method: 'POST',
     body,
     headers: { 'Content-Type': 'application/json' },
@@ -44,7 +44,7 @@ const createWebhook = catchAsync(async (req: Request, res: Response, next: NextF
 // Read Webhook route
 const readWebhook = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   // Fetch request to Moleculer micro-service
-  const response = await fetch('http://localhost:3001/webhooks', {
+  const response = await fetch('http://webhook-service:3001/webhooks', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   });
@@ -72,7 +72,7 @@ const updateWebhook = catchAsync(async (req: Request, res: Response, next: NextF
   });
 
   // Fetch request to Moleculer micro-service
-  const response = await fetch('http://localhost:3001/webhooks/update', {
+  const response = await fetch('http://webhook-service:3001/webhooks/update', {
     method: 'PATCH',
     body,
     headers: { 'Content-Type': 'application/json' },
@@ -100,7 +100,7 @@ const deleteWebhook = catchAsync(async (req: Request, res: Response, next: NextF
   });
 
   // Fetch request to Moleculer micro-service
-  const response = await fetch('http://localhost:3001/webhooks/delete', {
+  const response = await fetch('http://webhook-service:3001/webhooks/delete', {
     method: 'DELETE',
     body,
     headers: { 'Content-Type': 'application/json' },
@@ -126,7 +126,7 @@ const triggerWebhook = catchAsync(async (req: Request, res: Response, next: Next
   });
 
   // Fetch request to Moleculer micro-service
-  const response = await fetch('http://localhost:3001/webhooks/trigger', {
+  const response = await fetch('http://webhook-service:3001/webhooks/trigger', {
     method: 'POST',
     body,
     headers: { 'Content-Type': 'application/json' },
