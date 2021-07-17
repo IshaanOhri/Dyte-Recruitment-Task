@@ -31,6 +31,17 @@ docker-compose up --build -d
 ```
 npm run dc:up
 ```
+#### 3. Shut down server
+    
+2.1 Using docker-compose command
+```
+docker-compose down
+```
+
+2.2 Using NPM script
+```
+npm run dc:down
+```
     
 ## Postman Documentation
 Use the below postman documentation to view all the routes
