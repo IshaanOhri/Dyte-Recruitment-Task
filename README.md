@@ -38,7 +38,8 @@ Use the below postman documentation to view all the routes
 https://documenter.getpostman.com/view/8634962/TzmCgYQS
 ```
     
-
+## About the project
+The project uses a 2 Level package.json architecture. The outer level takes care of eslint, prettier and husky. Inside there are two directories, one for the **Express Backend** and another for the **Moleculer Microservice**, which have their independent NPM files.
     
 ## Author
 
