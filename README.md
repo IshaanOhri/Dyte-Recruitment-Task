@@ -1,6 +1,7 @@
 <code>
   <h1 align="center">Dyte Backend Recruitment Task</h1>
   <h3 align="center">ISHAAN OHRI 18BCE0265</h3>
+  <h3 align="center">Vellore Institute of Technology, Vellore</h3>
 </code>
 
 <div align="center">
