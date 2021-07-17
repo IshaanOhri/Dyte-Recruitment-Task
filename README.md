@@ -46,6 +46,7 @@ https://documenter.getpostman.com/view/8634962/TzmCgYQS
     2. Webook Moleculer Microservice
     3. MongoDB
     4. MongoUI (Access at *http://localhost:8001/*)
+ - The batch processing in the **trigger** action is done using **Promise Pools**, with a concurrency of 10.
     
 ## Author
 
