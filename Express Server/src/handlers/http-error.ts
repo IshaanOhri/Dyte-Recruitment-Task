@@ -15,20 +15,20 @@ import { IMetadataError } from '../interfaces';
  */
 
 class HttpError extends Error {
-	data: any;
+  data: any;
 
-	metadata: IMetadataError;
+  metadata: IMetadataError;
 
-	constructor(status: number, data: any, error: string) {
-		super();
-		this.data = data;
-		this.metadata = {
-			success: false,
-			status,
-			error,
-			timestamp: moment().format(),
-		};
-	}
+  constructor(status: number, data: any, error: string) {
+    super();
+    this.data = data;
+    this.metadata = {
+      success: false,
+      status,
+      error,
+      timestamp: moment().format(),
+    };
+  }
 }
 
 /*
@@ -36,9 +36,9 @@ class HttpError extends Error {
 */
 
 const HttpErrorHandler = (httpError: HttpError, res: Response) => {
-	const { data, metadata } = httpError;
+  const { data, metadata } = httpError;
 
-	res.status(metadata.status).send({ data, metadata });
+  res.status(metadata.status).send({ data, metadata });
 };
 
 export { HttpError, HttpErrorHandler };

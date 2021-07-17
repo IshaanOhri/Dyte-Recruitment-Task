@@ -1,0 +1,39 @@
+{
+  "name": "moleculer-server",
+  "version": "1.0.0",
+  "description": "Moleculer Server for the Backend Task in JavaScript for Dyte Recruitment July 2021",
+  "scripts": {
+    "dev": "moleculer-runner --repl --hot services/**/*.service.js",
+    "start": "moleculer-runner",
+    "cli": "moleculer connect ",
+    "dc:up": "docker-compose up --build -d",
+    "dc:logs": "docker-compose logs -f",
+    "dc:down": "docker-compose down"
+  },
+  "keywords": [
+    "microservices",
+    "moleculer"
+  ],
+  "author": "",
+  "devDependencies": {
+    "moleculer-repl": "^0.6.4"
+  },
+  "dependencies": {
+    "moleculer": "^0.14.13",
+    "moleculer-db": "^0.8.4",
+    "moleculer-db-adapter-mongoose": "^0.8.10",
+    "moleculer-web": "^0.9.1",
+    "mongoose": "^5.13.3"
+  },
+  "engines": {
+    "node": ">= 10.x.x"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  }
+}

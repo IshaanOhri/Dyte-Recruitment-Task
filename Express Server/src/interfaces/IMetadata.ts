@@ -7,8 +7,8 @@
  */
 
 export interface IMetadata {
-	success: boolean;
-	status: number;
-	message: string;
-	timestamp: string;
+  success: boolean;
+  status: number;
+  message: string;
+  timestamp: string;
 }

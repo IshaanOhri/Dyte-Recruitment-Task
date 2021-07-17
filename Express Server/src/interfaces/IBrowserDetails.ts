@@ -7,9 +7,9 @@
  */
 
 export interface IBrowserDetails {
-	browser: string | undefined;
-	version: string | undefined;
-	os: string | undefined;
-	platform: string | undefined;
-	source: string | undefined;
+  browser: string | undefined;
+  version: string | undefined;
+  os: string | undefined;
+  platform: string | undefined;
+  source: string | undefined;
 }

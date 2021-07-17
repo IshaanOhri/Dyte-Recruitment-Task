@@ -1,0 +1,38 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "Express Server for the Backend Task in TypeScript for Dyte Recruitment July 2021",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "env-cmd -f ./src/config/dev.env nodemon ./src/app.ts",
+    "update": "npx npm-check-updates -u",
+    "build": "tsc --project tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IshaanOhri/Dyte-Recruitment-Task.git"
+  },
+  "author": "Ishaan Ohri 18BCE0265",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IshaanOhri/Dyte-Recruitment-Task/issues"
+  },
+  "homepage": "https://github.com/IshaanOhri/Dyte-Recruitment-Task#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/express-useragent": "^1.0.1",
+    "@types/morgan": "^1.9.3",
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.1.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-useragent": "^1.0.15",
+    "log4js": "^6.3.0",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0"
+  }
+}

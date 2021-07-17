@@ -15,19 +15,19 @@ import { IMetadata } from '../interfaces';
 */
 
 class HttpResponse {
-	data: any;
+  data: any;
 
-	metadata: IMetadata;
+  metadata: IMetadata;
 
-	constructor(status: number, data: any, message: string = '') {
-		this.data = data;
-		this.metadata = {
-			success: true,
-			status,
-			message,
-			timestamp: moment().format(),
-		};
-	}
+  constructor(status: number, data: any, message: string = '') {
+    this.data = data;
+    this.metadata = {
+      success: true,
+      status,
+      message,
+      timestamp: moment().format(),
+    };
+  }
 }
 
 /*
@@ -35,9 +35,9 @@ class HttpResponse {
 */
 
 const HttpResponseHandler = (httpResponse: HttpResponse, res: Response) => {
-	const { data, metadata } = httpResponse;
+  const { data, metadata } = httpResponse;
 
-	res.status(metadata.status).send({ data, metadata });
+  res.status(metadata.status).send({ data, metadata });
 };
 
 export { HttpResponse, HttpResponseHandler };
