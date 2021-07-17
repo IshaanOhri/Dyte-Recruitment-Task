@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 17:14:58
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 17:12:09
+ * @Last Modified time: 2021-07-17 17:14:28
  * @Description: Defines functions for all webhook routes
  */
 
@@ -43,15 +43,51 @@ const createWebhook = catchAsync(async (req: Request, res: Response, next: NextF
 
 // Read Webhook route
 const readWebhook = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  // list webhook
-  next(new HttpResponse(status.ok, null, message.homeRoute));
+  // Fetch request to Moleculer micro-service
+  const response = await fetch('http://localhost:3001/webhooks', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  // Extracting json from response
+  const data = await response.json();
+
+  // Forward to error handler in case of error from Moleculer micro-service
+  if (response.status != 200) {
+    next(new HttpError(response.status, null, response.statusText));
+  }
+
+  // Forward 'data' to response handler
+  next(new HttpResponse(status.ok, data));
 });
 
 // Update Webhook route
 const updateWebhook = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { id, newTargetUrl }: { id: string; newTargetUrl: string } = req.body;
-  // update webhook
-  next(new HttpResponse(status.ok, null, message.homeRoute));
+
+  // Body for fetch request
+  const body = JSON.stringify({
+    id,
+    newTargetUrl,
+  });
+
+  // Fetch request to Moleculer micro-service
+  const response = await fetch('http://localhost:3001/webhooks/register', {
+    method: 'PATCH',
+    body,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  // Extracting json from response
+  const data = await response.json();
+
+  // Forward to error handler in case of error from Moleculer micro-service
+  if (response.status != 200) {
+    next(new HttpError(response.status, null, response.statusText));
+  }
+
+  // Forward 'data' to response handler
+  next(new HttpResponse(status.ok, data));
 });
 
 // Delete Webhook route
