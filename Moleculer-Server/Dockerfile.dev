@@ -1,0 +1,8 @@
+FROM node:15
+WORKDIR /usr/app/Moleculer-Server
+COPY ./package*.json .
+RUN npm install
+COPY . .
+RUN pwd
+RUN ls
+CMD npm run dev

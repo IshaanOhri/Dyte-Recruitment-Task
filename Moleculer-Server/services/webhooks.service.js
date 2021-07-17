@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-17 13:41:49
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 18:17:50
+ * @Last Modified time: 2021-07-17 18:36:41
  * @Description: Moleculer schema for Webhook service
  */
 
@@ -15,6 +15,7 @@ const _ = require('lodash');
 const fetch = require('node-fetch');
 const PromisePool = require('@supercharge/promise-pool');
 var moment = require('moment');
+const { MONGO_URI } = require('../config/env');
 
 module.exports = {
   // Service name
@@ -23,7 +24,7 @@ module.exports = {
   mixins: [DbService],
 
   // Mongoose database adapter
-  adapter: new MongooseAdapter('mongodb://root:rootpassword@localhost:27017'),
+  adapter: new MongooseAdapter(MONGO_URI),
 
   // MongoDB model
   model: Webhook,

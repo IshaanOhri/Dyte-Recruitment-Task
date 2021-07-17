@@ -4,7 +4,10 @@
   "description": "Backend Task for Dyte Recruitment July 2021",
   "main": "N/A",
   "scripts": {
-    "pretty-quick": "pretty-quick"
+    "pretty-quick": "pretty-quick",
+    "dc:up": "docker-compose up --build -d",
+    "dc:logs": "docker-compose logs -f",
+    "dc:down": "docker-compose down"
   },
   "repository": {
     "type": "git",

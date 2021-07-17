@@ -5,10 +5,7 @@
   "scripts": {
     "dev": "moleculer-runner --repl --hot services/**/*.service.js",
     "start": "moleculer-runner",
-    "cli": "moleculer connect ",
-    "dc:up": "docker-compose up --build -d",
-    "dc:logs": "docker-compose logs -f",
-    "dc:down": "docker-compose down"
+    "cli": "moleculer connect "
   },
   "keywords": [
     "microservices",
