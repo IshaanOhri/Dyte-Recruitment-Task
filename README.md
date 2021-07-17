@@ -39,7 +39,13 @@ https://documenter.getpostman.com/view/8634962/TzmCgYQS
 ```
     
 ## About the project
-The project uses a 2 Level package.json architecture. The outer level takes care of eslint, prettier and husky. Inside there are two directories, one for the **Express Backend** and another for the **Moleculer Microservice**, which have their independent NPM files.
+ - The project uses a 2 Level package.json architecture. The outer level takes care of eslint, prettier and husky. Inside there are two directories, one for the **Express Backend** and another for the **Webook Moleculer Microservice**, which have their independent NPM files.
+ - Both the directories have independent Dockerfiles and a docker-compose.yml file located in the outer directory takes care of spinning the containers.
+ - In total 4 containers are spun:
+    1. Express Backend
+    2. Webook Moleculer Microservice
+    3. MongoDB
+    4. MongoUI (Access at *http://localhost:8001/*)
     
 ## Author
 
