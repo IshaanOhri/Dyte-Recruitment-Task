@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 15:51:13
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 15:51:45
+ * @Last Modified time: 2021-07-17 18:25:44
  * @Description: All response codes and messages
  */
 
@@ -17,7 +17,7 @@ const status = {
 };
 
 const message = {
-  homeRoute: 'Hello World. Welcome to Node.js Server!',
+  homeRoute: 'Postman Documentation: https://documenter.getpostman.com/view/8634962/TzmCgYQS',
   healthRoute: 'Node.js backend running successfully!',
   notFound: 'The requested route does not exist.',
   serverError: 'An internal server error occurred. Please try again.',

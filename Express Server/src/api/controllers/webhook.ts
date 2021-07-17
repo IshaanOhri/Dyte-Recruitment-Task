@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 17:14:58
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 17:14:50
+ * @Last Modified time: 2021-07-17 18:19:46
  * @Description: Defines functions for all webhook routes
  */
 
@@ -72,7 +72,7 @@ const updateWebhook = catchAsync(async (req: Request, res: Response, next: NextF
   });
 
   // Fetch request to Moleculer micro-service
-  const response = await fetch('http://localhost:3001/webhooks/register', {
+  const response = await fetch('http://localhost:3001/webhooks/update', {
     method: 'PATCH',
     body,
     headers: { 'Content-Type': 'application/json' },
@@ -120,9 +120,28 @@ const deleteWebhook = catchAsync(async (req: Request, res: Response, next: NextF
 
 // Trigger Webhook route
 const triggerWebhook = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const { ip }: { ip: string } = req.body;
-  // trigger webhook
-  next(new HttpResponse(status.ok, null, message.homeRoute));
+  // Body for fetch request
+  const body = JSON.stringify({
+    ipAddress: req.connection.remoteAddress,
+  });
+
+  // Fetch request to Moleculer micro-service
+  const response = await fetch('http://localhost:3001/webhooks/trigger', {
+    method: 'POST',
+    body,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  // Extracting json from response
+  const data = await response.json();
+
+  // Forward to error handler in case of error from Moleculer micro-service
+  if (response.status != 200) {
+    next(new HttpError(response.status, null, response.statusText));
+  }
+
+  // Forward 'data' to response handler
+  next(new HttpResponse(status.ok, data));
 });
 
 export { createWebhook, readWebhook, updateWebhook, deleteWebhook, triggerWebhook };

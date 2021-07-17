@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 17:10:10
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 17:14:08
+ * @Last Modified time: 2021-07-17 17:26:27
  * @Description: Contains all webhook routes
  */
 
@@ -28,7 +28,7 @@ webhookRouter.patch('/webhook/update', updateWebhook);
 webhookRouter.delete('/webhook/delete', deleteWebhook);
 
 // @desc	Trigger Webhook
-// @route POST /ip
-webhookRouter.post('/ip', triggerWebhook);
+// @route GET /ip
+webhookRouter.get('/ip', triggerWebhook);
 
 export { webhookRouter };

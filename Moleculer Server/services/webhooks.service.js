@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-17 13:41:49
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 17:04:29
+ * @Last Modified time: 2021-07-17 18:17:50
  * @Description: Moleculer schema for Webhook service
  */
 
@@ -11,6 +11,10 @@ const MongooseAdapter = require('moleculer-db-adapter-mongoose');
 const Webhook = require('../models/Webhook');
 const { MoleculerError } = require('moleculer').Errors;
 const { message, status } = require('../config/response');
+const _ = require('lodash');
+const fetch = require('node-fetch');
+const PromisePool = require('@supercharge/promise-pool');
+var moment = require('moment');
 
 module.exports = {
   // Service name
@@ -55,7 +59,7 @@ module.exports = {
       // Handler for action
       async handler(ctx) {
         // Creat and save new webhook
-        const webhook = await this.adapter.insert(ctx.params);
+        const webhook = await Webhook.create(ctx.params);
 
         // Return unique 'id' in response
         return { id: webhook._id };
@@ -118,7 +122,12 @@ module.exports = {
         const { id } = ctx.params;
 
         // Remove webhook
-        const webhook = await Webhook.removeById(id);
+        const webhook = await Webhook.findByIdAndDelete(id);
+
+        // Throw 404 if webhook not found
+        if (!webhook) {
+          throw new MoleculerError(message.webhookNotFound, status.notFound);
+        }
 
         // Return webhook in response
         return webhook;
@@ -142,6 +151,7 @@ module.exports = {
       async handler(ctx) {
         const { ipAddress } = ctx.params;
 
+        // Get all webhooks from DB
         const webhooks = await Webhook.find(
           {},
           {
@@ -150,7 +160,33 @@ module.exports = {
           }
         );
 
-        return { webhooks };
+        var urls = [];
+
+        // Extract all 'targetUrl' from webhook objects
+        _.forEach(webhooks, (webhook) => urls.push(webhook.targetUrl));
+
+        // Hit all urls using a promise pool with concurrency of 10
+        const { results, errors } = await PromisePool.withConcurrency(10)
+          .for(urls)
+          .process(async (url) => {
+            // Execute fetch request for every url
+            const response = await fetch(url, {
+              method: 'POST',
+
+              // Insert 'ipAddress' and 'UNIX timestamp' in body
+              body: JSON.stringify({
+                ipAddress,
+                timestamp: moment().format(),
+              }),
+
+              headers: { 'Content-Type': 'application/json' },
+            });
+
+            return response;
+          });
+
+        // Return count of success and failed requests
+        return { success: results.length, fail: errors.length };
       },
     },
   },

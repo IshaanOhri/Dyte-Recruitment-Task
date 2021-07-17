@@ -19,11 +19,15 @@
     "moleculer-repl": "^0.6.4"
   },
   "dependencies": {
+    "@supercharge/promise-pool": "^1.7.0",
+    "lodash": "^4.17.21",
     "moleculer": "^0.14.13",
     "moleculer-db": "^0.8.4",
     "moleculer-db-adapter-mongoose": "^0.8.10",
     "moleculer-web": "^0.9.1",
-    "mongoose": "^5.13.3"
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.3",
+    "node-fetch": "^2.6.1"
   },
   "engines": {
     "node": ">= 10.x.x"
