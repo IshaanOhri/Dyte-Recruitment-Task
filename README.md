@@ -6,7 +6,6 @@
 
 <div align="center">
   <img src="https://img.shields.io/github/repo-size/IshaanOhri/Dyte-Recruitment-Task?logo=github" hspace="5">
-  <img src="https://img.shields.io/github/license/IshaanOhri/Dyte-Recruitment-Task" hspace="5">
   <img src="https://img.shields.io/github/last-commit/IshaanOhri/Dyte-Recruitment-Task?logo=git">
 </div>
 
