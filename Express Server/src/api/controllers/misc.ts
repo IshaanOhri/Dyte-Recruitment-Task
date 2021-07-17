@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 16:27:58
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-16 17:14:59
+ * @Last Modified time: 2021-07-17 14:23:24
  * @Description: Defines functions for all miscellaneous routes
  */
 
@@ -14,6 +14,7 @@ import { catchAsync } from '../../middleware';
 
 // Home route
 const home = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  console.log(req.connection.remoteAddress);
   next(new HttpResponse(status.ok, null, message.homeRoute));
 });
 
