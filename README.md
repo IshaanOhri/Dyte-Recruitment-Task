@@ -59,6 +59,8 @@ https://documenter.getpostman.com/view/8634962/TzmCgYQS
     4. MongoUI (Access at *http://localhost:8001/*)
  - The batch processing in the **trigger** action is done using **Promise Pools**, with a concurrency of 10.
     
+    ![Architecture](https://raw.githubusercontent.com/IshaanOhri/Dyte-Recruitment-Task/main/assets/architecture.svg "Architecture")
+    
 ## Author
 
 - [Ishaan Ohri 18BCE0265](https://github.com/IshaanOhri)
