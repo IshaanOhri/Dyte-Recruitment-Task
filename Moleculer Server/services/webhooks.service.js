@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-17 13:41:49
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 14:51:53
+ * @Last Modified time: 2021-07-17 17:04:29
  * @Description: Moleculer schema for Webhook service
  */
 
@@ -82,7 +82,7 @@ module.exports = {
         const { id, newTargetUrl } = ctx.params;
 
         // Get webhook from DB
-        const webhook = await this.adapter.findById(id);
+        const webhook = await Webhook.findById(id);
 
         // Throw 404 if webhook not found
         if (!webhook) {
@@ -118,7 +118,7 @@ module.exports = {
         const { id } = ctx.params;
 
         // Remove webhook
-        const webhook = await this.adapter.removeById(id);
+        const webhook = await Webhook.removeById(id);
 
         // Return webhook in response
         return webhook;
@@ -141,6 +141,16 @@ module.exports = {
       // Handler for action
       async handler(ctx) {
         const { ipAddress } = ctx.params;
+
+        const webhooks = await Webhook.find(
+          {},
+          {
+            _id: 0,
+            targetUrl: 1,
+          }
+        );
+
+        return { webhooks };
       },
     },
   },
