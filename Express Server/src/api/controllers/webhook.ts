@@ -2,7 +2,7 @@
  * @Author: Ishaan Ohri
  * @Date: 2021-07-16 17:14:58
  * @Last Modified by: Ishaan Ohri
- * @Last Modified time: 2021-07-17 17:14:28
+ * @Last Modified time: 2021-07-17 17:14:50
  * @Description: Defines functions for all webhook routes
  */
 
@@ -93,8 +93,29 @@ const updateWebhook = catchAsync(async (req: Request, res: Response, next: NextF
 // Delete Webhook route
 const deleteWebhook = catchAsync(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { id }: { id: string } = req.body;
-  // delete webhook
-  next(new HttpResponse(status.ok, null, message.homeRoute));
+
+  // Body for fetch request
+  const body = JSON.stringify({
+    id,
+  });
+
+  // Fetch request to Moleculer micro-service
+  const response = await fetch('http://localhost:3001/webhooks/delete', {
+    method: 'DELETE',
+    body,
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  // Extracting json from response
+  const data = await response.json();
+
+  // Forward to error handler in case of error from Moleculer micro-service
+  if (response.status != 200) {
+    next(new HttpError(response.status, null, response.statusText));
+  }
+
+  // Forward 'data' to response handler
+  next(new HttpResponse(status.ok, data));
 });
 
 // Trigger Webhook route
