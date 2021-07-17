@@ -33,6 +33,7 @@ npm run dc:up
 ```
     
 ## Postman Documentation
+Use the below postman documentation to view all the routes
 ```
 https://documenter.getpostman.com/view/8634962/TzmCgYQS
 ```
